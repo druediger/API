@@ -29,6 +29,30 @@ async function createUser(req, res){
   }
 }
 
+async function updateUser(req, res){
+
+  try{
+    const { id } = req.params;
+
+    const { name, email, password } = req.params;
+
+    await userService.updateUser(name, email, password);
+
+    res.status(204).json('Sucess');
+
+  } catch {
+    res.status(500).send({
+      message: "Error updating user",
+      body: error.message
+    })
+
+  }
+}
+
+async function deleteUser(req, res){
+
+}
+
 module.exports = {
   getAllUser,
   createUser,
